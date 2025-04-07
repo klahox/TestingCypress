@@ -30,6 +30,18 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\cypress\\e2e\\spec.cy.js"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Cypress Chrome",
+            "port": 9222,
+            "urlFilter": "http://localhost*",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "skipFiles": [
+                "cypress_runner.js",
+            ],
         }
     ]
 }

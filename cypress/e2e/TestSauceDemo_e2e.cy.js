@@ -1,10 +1,7 @@
 import 'cypress-xpath';
+import { login } from '../support/pages/Login';
+import { assert } from 'chai';
 describe('Sauce Demo E2E test', () => {
-
-
-  const xpathItem = "";
-  const xpathItemName = 'div[data-test="inventory-item-name"';
-  const xpathItemPrice = 'div[data-test="inventory-item-price"';
 
   const expectedNamePrice = new Map([
     ['Sauce Labs Backpack', 29.99],
@@ -19,20 +16,18 @@ describe('Sauce Demo E2E test', () => {
   it('E2E Tests', () => {
 
     // Login Page, enter user and pas and login
-    cy.log('Visit SauceDemo and do login');
-    cy.visit('https://www.saucedemo.com/');
-    cy.get('input[id="user-name"]').type('standard_user');
-    cy.get('input[id="password"]').type('secret_sauce');
-    cy.get('input[id="login-button"]').click();
+    login.visit();
+    login.fillUserPassAndLogin();
     
 
     // Inventory Page, add to chart all products, and go to chart
     cy.log('Inventory Page, add to chart all products');
-    checkItemNameAndPrice();
+    checkItemNameAndPrice(true);
     cy.get('div[id="shopping_cart_container"]').click();
-
+    
 
     //Click on Checkout 
+    checkItemNameAndPrice(false);
     cy.get('button[id="checkout"]').click();
 
 
@@ -43,7 +38,8 @@ describe('Sauce Demo E2E test', () => {
     cy.get('input[id="continue"]').click();
 
     //Checkout Step two
-    cy.get('button[id="finish"]').click();
+    checkItemNameAndPrice(false);
+    cy.get('button[id="finish"]').click();y
 
     //Asserts
     cy.get('img[data-test="pony-express"').should('be.visible');
@@ -53,7 +49,7 @@ describe('Sauce Demo E2E test', () => {
   })
 
 
-  function checkItemNameAndPrice(){
+  function checkItemNameAndPrice(addToChart){
     
     cy.xpath("//div[@data-test='inventory-item']").each(($elem)=>{
       //Get the Name
@@ -65,10 +61,12 @@ describe('Sauce Demo E2E test', () => {
       cy.log(`Hola name: ${name}`);
       cy.log(`Hola price: ${price}`);
       
-      if(!expectedNamePrice.has(name) || expectedNamePrice.get(name) != price )
+      if(!expectedNamePrice.has(name) || parseFloat(expectedNamePrice.get(name)) != parseFloat(price) )
         return false;  
 
-      cy.wrap($elem).find('button').click();
+      if(addToChart)
+        cy.wrap($elem).find('button').click();
+      
     });
 
 

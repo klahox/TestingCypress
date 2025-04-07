@@ -1,6 +1,11 @@
 {
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "cypress": "^14.2.1",
     "cypress-xpath": "^2.0.1"
+  },
+  "scripts": {
+    "cypr": "cross-env CYPRESS_REMOTE_DEBUGGING_PORT=9222 cypress open"
   }
+
 }
