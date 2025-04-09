@@ -1,5 +1,8 @@
+import { verifyProductDetails } from '../utils/productsUtils';
+
 class Checkout {
     elements = {
+        overviewItems: () => cy.get("div[data-test='inventory-item']"),
         firstNameInput: () => cy.get('input[id="first-name"]'),
         lastNameInput: () => cy.get('input[id="last-name"]'),
         postalCodeInput: () => cy.get('input[id="postal-code"]'),
@@ -19,6 +22,10 @@ class Checkout {
 
     continueToOverview() {
         this.elements.continueButton().click();
+    }
+
+    verifyProductInCheckout(expectedProducts) {
+        verifyProductDetails(this.elements.overviewItems(), expectedProducts);  
     }
 
     completePurchase() {

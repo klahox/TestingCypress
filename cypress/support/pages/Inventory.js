@@ -1,25 +1,23 @@
+import { verifyProductDetails } from '../utils/productsUtils';
+
 class Inventory {
     elements = {
         inventoryItems: () => cy.get("div[data-test='inventory-item']"),
-        itemName: () => cy.get("div[data-test='inventory-item-name']"),
-        itemPrice: () => cy.get("div[data-test='inventory-item-price']"),
-        addToCartButton: () => cy.get("button"),
         cartIcon: () => cy.get("div[id='shopping_cart_container']")
     }
+    xpath = {
+        itemName: 'div[data-test="inventory-item-name"]',
+        itemPrice: 'div[data-test="inventory-item-price"]',
+        addToCartButton: 'button'
+    }
 
-    verifyProductDetails(expectedProducts) {
-        this.elements.inventoryItems().each(($elem) => {
-            const name = $elem.find("div[data-test='inventory-item-name']").text().trim();
-            const price = parseFloat($elem.find("div[data-test='inventory-item-price']").text().replace('$', ''));
-            
-            expect(expectedProducts).to.have.property(name);
-            expect(price).to.equal(expectedProducts[name]);
-        });
+    verifyProductInInventory(expectedProducts) {
+        verifyProductDetails(this.elements.inventoryItems(), expectedProducts);
     }
 
     addAllProductsToCart() {
         this.elements.inventoryItems().each(($elem) => {
-            cy.wrap($elem).find('button').click();
+            cy.wrap($elem).find(this.xpath.addToCartButton).click();
         });
     }
 

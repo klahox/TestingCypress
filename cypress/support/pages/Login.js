@@ -1,15 +1,21 @@
 class Login {
-    
-    visit() {
-        cy.visit('https://www.saucedemo.com/');
+
+    elements = {
+        inputUserName: () => cy.get('input[id="user-name"]'),
+        inputPassword: () => cy.get('input[id="password"]'),
+        buttonlogin: () => cy.get('input[id="login-button"]'),
     }
-  
-    fillUserPassAndLogin() {
-        cy.get('input[id="user-name"]').type('standard_user');
-        cy.get('input[id="password"]').type('secret_sauce');
-        cy.get('input[id="login-button"]').click(); 
+
+    visit(baseUrl) {
+        cy.visit(baseUrl);
     }
-  
-  }
+
+    fillUserPassAndLogin(credentials) {
+        this.elements.inputUserName().type(credentials.username);
+        this.elements.inputPassword().type(credentials.password);
+        this.elements.buttonlogin().click(); 
+    }
+
+}
   
   export const login = new Login();

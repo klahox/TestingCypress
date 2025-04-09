@@ -11,16 +11,16 @@ describe('Sauce Demo E2E test', () => {
 
     it('should complete a purchase flow successfully', function() {
         // Login
-        login.visit();
-        login.fillUserPassAndLogin();
+        login.visit(this.testData.baseUrl);
+        login.fillUserPassAndLogin(this.testData.credentials);
 
         // Inventory Page
-        inventory.verifyProductDetails(this.testData.products);
+        inventory.verifyProductInInventory(this.testData.products);
         inventory.addAllProductsToCart();
         inventory.goToCart();
 
         // Cart Page
-        cart.verifyProductDetails(this.testData.products);
+        cart.verifyProductInCart(this.testData.products);
         cart.proceedToCheckout();
 
         // Checkout Information
@@ -28,7 +28,7 @@ describe('Sauce Demo E2E test', () => {
         checkout.continueToOverview();
 
         // Checkout Overview
-        cart.verifyProductDetails(this.testData.products);
+        cart.verifyProductInCart(this.testData.products);
         checkout.completePurchase();
 
         // Order Completion
