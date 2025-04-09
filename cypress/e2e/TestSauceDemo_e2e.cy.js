@@ -2,7 +2,10 @@ import 'cypress-xpath';
 import { login } from '../support/pages/Login';
 import { inventory } from '../support/pages/Inventory';
 import { cart } from '../support/pages/Cart';
-import { checkout } from '../support/pages/Checkout';
+
+import { checkoutStepOne } from '../support/pages/CheckoutStepOne';
+import { checkoutStepTwo } from '../support/pages/CheckoutStepTwo';
+import { checkoutComplete } from '../support/pages/CheckoutComplete';
 
 describe('Sauce Demo E2E test', () => {
     beforeEach(() => {
@@ -23,15 +26,15 @@ describe('Sauce Demo E2E test', () => {
         cart.verifyProductInCart(this.testData.products);
         cart.proceedToCheckout();
 
-        // Checkout Information
-        checkout.fillUserInformation(this.testData.userInfo);
-        checkout.continueToOverview();
+        // Checkout Step One Information
+        checkoutStepOne.fillUserInformation(this.testData.userInfo);
+        checkoutStepOne.continueToOverview();
 
-        // Checkout Overview
-        cart.verifyProductInCart(this.testData.products);
-        checkout.completePurchase();
+        // Checkout Step Two Overview
+        checkoutStepTwo.verifyProductInCheckout(this.testData.products);
+        checkoutStepTwo.completePurchase();
 
-        // Order Completion
-        checkout.verifyOrderCompletion();
+        // Checkout Complete
+        checkoutComplete.verifyOrderCompletion();
     });
 });
