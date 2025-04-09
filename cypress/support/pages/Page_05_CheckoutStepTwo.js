@@ -1,6 +1,6 @@
 import { verifyProductDetails } from '../utils/productsUtils';
 
-class CheckoutStepTwo {
+class Page_05_CheckoutStepTwo {
     elements = {
         overviewItems: () => cy.get("div[data-test='inventory-item']"),
         finishButton: () => cy.get('button[id="finish"]'),
@@ -18,4 +18,4 @@ class CheckoutStepTwo {
 
 }
 
-export const checkoutStepTwo = new CheckoutStepTwo(); 
+export const checkoutStepTwo = new Page_05_CheckoutStepTwo(); 

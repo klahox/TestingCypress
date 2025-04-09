@@ -1,4 +1,4 @@
-class CheckoutStepOne {
+class Page_04_CheckoutStepOne {
     elements = {
         firstNameInput: () => cy.get('input[id="first-name"]'),
         lastNameInput: () => cy.get('input[id="last-name"]'),
@@ -17,4 +17,4 @@ class CheckoutStepOne {
     }
 }
 
-export const checkoutStepOne = new CheckoutStepOne();
+export const checkoutStepOne = new Page_04_CheckoutStepOne();

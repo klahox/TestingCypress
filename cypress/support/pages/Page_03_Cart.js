@@ -1,6 +1,6 @@
 import { verifyProductDetails } from '../utils/productsUtils';
 
-class Cart {
+class Page_03_Cart {
     elements = {
         cartItems: () => cy.get("div[data-test='inventory-item']"),
         checkoutButton: () => cy.get('button[id="checkout"]')
@@ -15,4 +15,4 @@ class Cart {
     }
 }
 
-export const cart = new Cart(); 
+export const cart = new Page_03_Cart(); 

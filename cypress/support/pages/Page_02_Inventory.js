@@ -1,6 +1,6 @@
 import { verifyProductDetails } from '../utils/productsUtils';
 
-class Inventory {
+class Page_02_Inventory {
     elements = {
         inventoryItems: () => cy.get("div[data-test='inventory-item']"),
         cartIcon: () => cy.get("div[id='shopping_cart_container']")
@@ -17,7 +17,7 @@ class Inventory {
 
     addAllProductsToCart() {
         this.elements.inventoryItems().each(($elem) => {
-            cy.wrap($elem).find(this.xpath.addToCartButton).click();
+            cy.wrap($elem).find('button').click();
         });
     }
 
@@ -26,4 +26,4 @@ class Inventory {
     }
 }
 
-export const inventory = new Inventory(); 
+export const inventory = new Page_02_Inventory(); 

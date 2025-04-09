@@ -1,4 +1,4 @@
-class CheckoutComplete {
+class Page_06_CheckoutComplete {
     elements = {
         ponyExpressImage: () => cy.get('img[data-test="pony-express"]'),
         completeHeader: () => cy.get('h2[data-test="complete-header"]'),
@@ -14,4 +14,4 @@ class CheckoutComplete {
     }
 }
 
-export const checkoutComplete = new CheckoutComplete();
+export const checkoutComplete = new Page_06_CheckoutComplete();

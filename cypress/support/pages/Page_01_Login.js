@@ -1,4 +1,4 @@
-class Login {
+class Page_01_Login {
 
     elements = {
         inputUserName: () => cy.get('input[id="user-name"]'),
@@ -18,4 +18,4 @@ class Login {
 
 }
   
-  export const login = new Login();
+export const login = new Page_01_Login();   

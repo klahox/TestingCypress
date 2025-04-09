@@ -1,11 +1,11 @@
 import 'cypress-xpath';
-import { login } from '../support/pages/Login';
-import { inventory } from '../support/pages/Inventory';
-import { cart } from '../support/pages/Cart';
+import { login }            from '../support/pages/Page_01_Login';
+import { inventory }        from '../support/pages/Page_02_Inventory';
+import { cart }             from '../support/pages/Page_03_Cart';
 
-import { checkoutStepOne } from '../support/pages/CheckoutStepOne';
-import { checkoutStepTwo } from '../support/pages/CheckoutStepTwo';
-import { checkoutComplete } from '../support/pages/CheckoutComplete';
+import { checkoutStepOne }  from '../support/pages/Page_04_CheckoutStepOne';
+import { checkoutStepTwo }  from '../support/pages/Page_05_CheckoutStepTwo';
+import { checkoutComplete } from '../support/pages/Page_06_CheckoutComplete';
 
 describe('Sauce Demo E2E test', () => {
     beforeEach(() => {
